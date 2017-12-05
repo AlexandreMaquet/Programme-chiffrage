@@ -1,2 +1,2 @@
-# Programme-cryptage
-Un programme qui permet de crypter un message via une clé de cryptage personnalisée.
+# Programme-chiffrage
+Un programme qui permet de chiffrer un message via une clé de chiffrage personnalisée.
