@@ -10,6 +10,29 @@ namespace Programme_chiffrage
     {
         static void Main(string[] args)
         {
+            char cDebutProgramme;
+
+            Console.Write("Voulez-vous [C]hiffrer ou [D]échiffrer ? ");
+            cDebutProgramme = Console.ReadKey().KeyChar;
+
+            if (cDebutProgramme == 'C')
+            {
+                chiffrer();
+            }
+            else
+            {
+                dechiffrer();
+            }
+        }
+
+        static void chiffrer()
+        {
+
+        }
+
+        static void dechiffrer()
+        {
+
         }
     }
 }
