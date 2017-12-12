@@ -51,7 +51,53 @@ namespace Programme_chiffrage
 
         static int ConvertionLC(string strMessage)
         {
-            return 0;
+            int iPosChar = 0;
+            int iLettre1 = 0;
+            int iLettre2 = 0;
+            int iLettre3 = 0;
+            int iValeurNombre;
+            int iConvertionCle;
+            string strValeurNombre;
+            string strLettre1;
+            string strLettre2;
+            string strLettre3;
+            string strConvertionCle;
+            char cValeurNombre;
+
+            do
+            {
+                strValeurNombre = strMessage.Substring(iPosChar, 1);
+                cValeurNombre = Convert.ToChar(strValeurNombre);
+                iValeurNombre = Convert.ToInt32(cValeurNombre);
+                switch (iPosChar)
+                {
+                    case 0:
+                        iLettre1 = iValeurNombre;
+                        iPosChar++;
+                        break;
+
+                    case 1:
+                        iLettre2 = iValeurNombre;
+                        iPosChar++;
+                        break;
+
+                    case 2:
+                        iLettre3 = iValeurNombre;
+                        iPosChar++;
+                        break;
+                }
+            }
+            while (iPosChar == strMessage.Length);
+
+            strLettre1 = Convert.ToString(iLettre1);
+            strLettre2 = Convert.ToString(iLettre2);
+            strLettre3 = Convert.ToString(iLettre3);
+
+            strConvertionCle = strLettre1 + strLettre2 + strLettre3;
+
+            iConvertionCle = Convert.ToInt32(strConvertionCle);
+
+            return (0);
         }
 
         static int ConvertionCle(string strCle)
