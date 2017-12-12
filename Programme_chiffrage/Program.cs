@@ -56,12 +56,12 @@ namespace Programme_chiffrage
             int iLettre2 = 0;
             int iLettre3 = 0;
             int iValeurNombre;
-            int iConvertionCle;
+            int iConvertionMessage;
             string strValeurNombre;
             string strLettre1;
             string strLettre2;
             string strLettre3;
-            string strConvertionCle;
+            string strConvertionMessage;
             char cValeurNombre;
 
             do
@@ -93,9 +93,9 @@ namespace Programme_chiffrage
             strLettre2 = Convert.ToString(iLettre2);
             strLettre3 = Convert.ToString(iLettre3);
 
-            strConvertionCle = strLettre1 + strLettre2 + strLettre3;
+            strConvertionMessage = strLettre1 + strLettre2 + strLettre3;
 
-            iConvertionCle = Convert.ToInt32(strConvertionCle);
+            iConvertionMessage = Convert.ToInt32(strConvertionMessage);
 
             return (0);
         }
