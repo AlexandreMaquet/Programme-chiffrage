@@ -119,6 +119,9 @@ namespace Programme_chiffrage
                 strTempVal = Convert.ToString(iValeurNombre);
                 strConvertionMessage = strConvertionMessage + "0" + strTempVal;
             }
+
+            // TODO: À supprimer
+            return 0;
         }
 
         static string ConvertionCL(string strChiffreSol)
