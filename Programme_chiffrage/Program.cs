@@ -27,7 +27,7 @@ namespace Programme_chiffrage
 
         static void chiffrer()
         {
-            
+
         }
 
         static void dechiffrer()
@@ -52,7 +52,29 @@ namespace Programme_chiffrage
             lChiffreSol = lSerie + lCleSol;
             strChiffreSol = Convert.ToString(lChiffreSol);
 
-            string strMessageSol = ConvertionCL(strChiffreSol); 
+        static void dechiffrer()
+        {
+            string strSerie;
+            string strCle;
+            string strChiffreSol;
+            long lSerie;
+            long lChiffreSol;
+
+            Console.Clear();
+
+            Console.WriteLine("Entrez votre série à déchiffrer : ");
+            strSerie = Console.ReadLine();
+            lSerie = Convert.ToInt64(strSerie);
+
+            Console.WriteLine("Entrez votre clé de décryptage : ");
+            strCle = Console.ReadLine();
+
+            long lCleSol = ConvertionCle(strCle);
+
+            lChiffreSol = lSerie + lCleSol;
+            strChiffreSol = Convert.ToString(lChiffreSol);
+
+            string strMessageSol = ConvertionCL(strChiffreSol);
 
             Console.WriteLine("Voici votre message décodé : {0} ", strMessageSol);
             Console.ReadKey();
@@ -61,7 +83,7 @@ namespace Programme_chiffrage
 
         static long ConvertionLC(string strMessage)
         {
-            
+
         }
 
         static long ConvertionCle(string strCle)
@@ -77,14 +99,37 @@ namespace Programme_chiffrage
             int iPosChar;
             long lValeurLettre;
             char cLettre;
-            
+
+
+            if (strChiffreSol.Length % 3 == 2)
+            {
+                strValeurNombre = strCle.Substring(iPosChar, 1);
+                cValeurNombre = Convert.ToChar(strValeurNombre);
+                iValeurNombre = Convert.ToInt64(cValeurNombre);
+                strTempVal = Convert.ToString(iValeurNombre);
+                strConvertionMessage = strConvertionMessage + "0" + strTempVal;
+            }
+
+            // TODO: À supprimer
+            return 0;
+        }
+
+        static string ConvertionCL(string strChiffreSol)
+        {
+            string strValeurLettre;
+            string strLettre;
+            string strMessageSol = "";
+            int iPosChar;
+            long lValeurLettre;
+            char cLettre;
+
 
             if (strChiffreSol.Length % 3 == 2)
             {
                 iPosChar = strChiffreSol.Length - 2;
 
                 int iSwitch = iPosChar;
-                
+
                 for (int iRepetition = 0; iRepetition < strChiffreSol.Length / 3 - 1; iRepetition++)
                 {
                     strValeurLettre = strChiffreSol.Substring(iPosChar, 3);
@@ -113,6 +158,5 @@ namespace Programme_chiffrage
 
             return strMessageSol;
         }
- 
     }
 }
