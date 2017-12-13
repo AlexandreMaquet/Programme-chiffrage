@@ -12,10 +12,10 @@ namespace Programme_chiffrage
         {
             char cDebutProgramme;
 
-            Console.Write("Voulez-vous [C]hiffrer ou [D]échiffrer ? ");
+            Console.WriteLine("Voulez-vous [C]hiffrer ou [D]échiffrer ? ");
             cDebutProgramme = Console.ReadKey().KeyChar;
 
-            if (cDebutProgramme == 'C')
+            if (cDebutProgramme == 'c')
             {
                 chiffrer();
             }
@@ -29,18 +29,21 @@ namespace Programme_chiffrage
         {
             string strMessage;
             string strCle;
-            int iChiffreSol;
-            
+            long lChiffreSol;
+
+            Console.Clear();
 
             Console.WriteLine("Entrez votre message à chiffrer : ");
             strMessage = Console.ReadLine();
 
             Console.WriteLine("Entrez votre clé de cryptage : ");
             strCle = Console.ReadLine();
-            int iCleSol = ConvertionCle(strCle);
 
-            iChiffreSol = iMessageSol * iCleSol;
-            Console.WriteLine("Voici votre message codé : {0} ", iChiffreSol);
+            long lMessageSol=ConvertionLC(strMessage);
+            long lCleSol=ConvertionCle(strCle);
+
+            lChiffreSol = lMessageSol + lCleSol;
+            Console.WriteLine("Voici votre message codé : {0} ", lChiffreSol);
             Console.ReadKey();
         }
 
@@ -49,106 +52,54 @@ namespace Programme_chiffrage
 
         }
 
-        static int ConvertionLC(string strMessage)
+        static long ConvertionLC(string strMessage)
         {
             int iPosChar = 0;
-            int iLettre1 = 0;
-            int iLettre2 = 0;
-            int iLettre3 = 0;
-            int iValeurNombre;
-            int iConvertionMessage;
+            long lValeurNombre;
+            long lConvertionMessage;
             string strValeurNombre;
-            string strLettre1;
-            string strLettre2;
-            string strLettre3;
-            string strConvertionMessage;
+            string strConvertionMessage = "";
+            string strTempVal;
             char cValeurNombre;
 
-            do
+            for (iPosChar = 0; iPosChar < strMessage.Length; iPosChar++)
             {
                 strValeurNombre = strMessage.Substring(iPosChar, 1);
                 cValeurNombre = Convert.ToChar(strValeurNombre);
-                iValeurNombre = Convert.ToInt32(cValeurNombre);
-                switch (iPosChar)
-                {
-                    case 0:
-                        iLettre1 = iValeurNombre;
-                        iPosChar++;
-                        break;
+                lValeurNombre = Convert.ToInt64(cValeurNombre);
+                strTempVal = Convert.ToString(lValeurNombre);
+                strConvertionMessage = strConvertionMessage + "0" + strTempVal;
 
-                    case 1:
-                        iLettre2 = iValeurNombre;
-                        iPosChar++;
-                        break;
-
-                    case 2:
-                        iLettre3 = iValeurNombre;
-                        iPosChar++;
-                        break;
-                }
             }
-            while (iPosChar == strMessage.Length);
 
-            strLettre1 = Convert.ToString(iLettre1);
-            strLettre2 = Convert.ToString(iLettre2);
-            strLettre3 = Convert.ToString(iLettre3);
+           lConvertionMessage = Convert.ToInt64(strConvertionMessage);
 
-            strConvertionMessage = strLettre1 + strLettre2 + strLettre3;
-
-            iConvertionMessage = Convert.ToInt32(strConvertionMessage);
-
-            return (0);
+            return lConvertionMessage;
         }
 
-        static int ConvertionCle(string strCle)
+        static long ConvertionCle(string strCle)
         {
             int iPosChar = 0;
-            int iLettre1 = 0;
-            int iLettre2 = 0;
-            int iLettre3 = 0;
-            int iValeurNombre;
-            int iConvertionCle;
+            long iValeurNombre;
+            long iConvertionCle;
             string strValeurNombre;
-            string strLettre1;
-            string strLettre2;
-            string strLettre3;
-            string strConvertionCle;
+            string strConvertionMessage = "";
+            string strTempVal;
             char cValeurNombre;
 
-            do
+            for (iPosChar = 0; iPosChar < strCle.Length; iPosChar++)
             {
                 strValeurNombre = strCle.Substring(iPosChar, 1);
                 cValeurNombre = Convert.ToChar(strValeurNombre);
-                iValeurNombre = Convert.ToInt32(cValeurNombre);
-                switch (iPosChar)
-                {
-                    case 0:
-                        iLettre1 = iValeurNombre;
-                        iPosChar++;
-                        break;
+                iValeurNombre = Convert.ToInt64(cValeurNombre);
+                strTempVal = Convert.ToString(iValeurNombre);
+                strConvertionMessage = strConvertionMessage + "0" + strTempVal;
 
-                    case 1:
-                        iLettre2 = iValeurNombre;
-                        iPosChar++;
-                        break;
-
-                    case 2:
-                        iLettre3 = iValeurNombre;
-                        iPosChar++;
-                        break;
-                }
             }
-            while (iPosChar == strCle.Length);
 
-            strLettre1 = Convert.ToString(iLettre1);
-            strLettre2 = Convert.ToString(iLettre2);
-            strLettre3 = Convert.ToString(iLettre3);
+            iConvertionCle = Convert.ToInt64(strConvertionMessage);
 
-            strConvertionCle = strLettre1 + strLettre2 + strLettre3;
-
-            iConvertionCle = Convert.ToInt32(strConvertionCle);
-
-            return (0);
+            return iConvertionCle;
         }
  
     }
