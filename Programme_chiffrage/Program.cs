@@ -34,8 +34,9 @@ namespace Programme_chiffrage
         {
             string strSerie;
             string strCle;
-            long lChiffreSol;
+            string strChiffreSol;
             long lSerie;
+            long lChiffreSol;
 
             Console.Clear();
 
@@ -49,8 +50,9 @@ namespace Programme_chiffrage
             long lCleSol = ConvertionCle(strCle);
 
             lChiffreSol = lSerie + lCleSol;
+            strChiffreSol = Convert.ToString(lChiffreSol);
 
-            string strMessageSol = ConvertionCL(lChiffreSol);
+            string strMessageSol = ConvertionCL(strChiffreSol); 
 
             Console.WriteLine("Voici votre message décodé : {0} ", strMessageSol);
             Console.ReadKey();
@@ -67,24 +69,49 @@ namespace Programme_chiffrage
 
         }
 
-        static long ConvertionCL(long lChiffreSol)
+        static string ConvertionCL(string strChiffreSol)
         {
-            string strChiffreSol;
+            string strValeurLettre;
+            string strLettre;
+            string strMessageSol = "";
             int iPosChar;
-
-            strChiffreSol = Convert.ToString(lChiffreSol);
+            long lValeurLettre;
+            char cLettre;
+            
 
             if (strChiffreSol.Length % 3 == 2)
             {
                 iPosChar = strChiffreSol.Length - 2;
 
                 int iSwitch = iPosChar;
-
-                for (;;)
+                
+                for (int iRepetition = 0; iRepetition < strChiffreSol.Length / 3 - 1; iRepetition++)
+                {
+                    strValeurLettre = strChiffreSol.Substring(iPosChar, 3);
+                    lValeurLettre = Convert.ToInt64(strValeurLettre);
+                    cLettre = (char)lValeurLettre;
+                    strLettre = Convert.ToString(cLettre);
+                    strMessageSol = strLettre + strMessageSol;
+                    iPosChar = iPosChar - 3;
+                }
 
             }
 
-            return 0;
+            else
+            {
+                iPosChar = 0;
+                for (int iRepetition = 0; iRepetition < strChiffreSol.Length / 3; iRepetition++)
+                {
+                    strValeurLettre = strChiffreSol.Substring(iPosChar, 3);
+                    lValeurLettre = Convert.ToInt64(strValeurLettre);
+                    cLettre = (char)lValeurLettre;
+                    strLettre = Convert.ToString(cLettre);
+                    strMessageSol = strLettre + strMessageSol;
+                    iPosChar = iPosChar - 3;
+                }
+            }
+
+            return strMessageSol;
         }
  
     }
