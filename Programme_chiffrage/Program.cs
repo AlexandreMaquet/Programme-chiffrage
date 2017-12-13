@@ -49,6 +49,28 @@ namespace Programme_chiffrage
 
         static void dechiffrer()
         {
+            string strSerie;
+            string strCle;
+            long lChiffreSol;
+            long lSerie;
+
+            Console.Clear();
+
+            Console.WriteLine("Entrez votre série à déchiffrer : ");
+            strSerie = Console.ReadLine();
+            lSerie = Convert.ToInt64(strSerie);
+
+            Console.WriteLine("Entrez votre clé de décryptage : ");
+            strCle = Console.ReadLine();
+
+            long lCleSol = ConvertionCle(strCle);
+
+            lChiffreSol = lSerie + lCleSol;
+
+            string strMessageSol = ConvertionCL(lChiffreSol);
+
+            Console.WriteLine("Voici votre message décodé : {0} ", strMessageSol);
+            Console.ReadKey();
 
         }
 
@@ -94,13 +116,27 @@ namespace Programme_chiffrage
                 iValeurNombre = Convert.ToInt64(cValeurNombre);
                 strTempVal = Convert.ToString(iValeurNombre);
                 strConvertionMessage = strConvertionMessage + "0" + strTempVal;
+            }
+        }
+
+        static long ConvertionCL(long lChiffreSol)
+        {
+            string strChiffreSol;
+            int iPosChar;
+
+            strChiffreSol = Convert.ToString(lChiffreSol);
+
+            if (strChiffreSol.Length % 3 == 2)
+            {
+                iPosChar = strChiffreSol.Length - 2;
+
+                int iSwitch = iPosChar;
+
+                for (;;)
 
             }
 
-            iConvertionCle = Convert.ToInt64(strConvertionMessage);
-
-            return iConvertionCle;
+            return 0;
         }
- 
     }
 }
