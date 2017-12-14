@@ -10,25 +10,114 @@ namespace Programme_chiffrage
     {
         static void Main(string[] args)
         {
-            char cDebutProgramme;
+            Console.WriteLine( "___________________________________________________________");
+            Console.WriteLine(@" _____                                                     ");
+            Console.WriteLine(@" |  __ \                                                   ");
+            Console.WriteLine(@" | |__) | __ ___   __ _ _ __ __ _ _ __ ___  _ __ ___   ___ ");
+            Console.WriteLine(@" |  ___/ '__/ _ \ / _` | '__/ _` | '_ ` _ \| '_ ` _ \ / _ \");
+            Console.WriteLine(@" | | | | | | (_) | (_| | | | (_| | | | | | | | | | | |  __/");
+            Console.WriteLine(@" |_|_| |_|__\___/ \__, |_|  \__,_|_| |_| |_|_| |_| |_|\___|");
+            Console.WriteLine(@"  / _` |/ _ \      __/ |                                    ");
+            Console.WriteLine(@" | (_| |  __/     |___/                                     ");
+            Console.WriteLine(@"  \__,_|\___|                                               ");
+            Console.WriteLine(@"  _____ _     _  __  __                                    ");
+            Console.WriteLine(@" / ____| |   (_)/ _|/ _|                                   ");
+            Console.WriteLine(@" | |    | |__  _| |_| |_ _ __ __ _  __ _  ___              ");
+            Console.WriteLine(@" | |    | '_ \| |  _|  _| '__/ _` |/ _` |/ _ \             ");
+            Console.WriteLine(@" | |____| | | | | | | | | | | (_| | (_| |  __/             ");
+            Console.WriteLine(@"  \_____|_| |_|_|_| |_| |_|  \__,_|\__, |\___|             ");
+            Console.WriteLine(@"                                    __/ |                  ");
+            Console.WriteLine(@"                                   |___/                   ");
+            Console.WriteLine( "___________________________________________________________");
+            Console.WriteLine("\nBienvenue");
+            Console.WriteLine("\nPour continuer pressez une touche");
+            Console.WriteLine("___________________________________________________________");
+            Console.ReadKey();
+            start();
 
-            Console.WriteLine("Voulez-vous [C]hiffrer ou [D]échiffrer ? ");
-            cDebutProgramme = Console.ReadKey().KeyChar;
 
-            if (cDebutProgramme == 'c')
+        }
+
+        static void start()
+        {
+            for (int i = 1; i > 0; i++)
             {
-                chiffrer();
-            }
-            else
-            {
-                dechiffrer();
+                Console.Clear();
+
+                char cDebutProgramme;
+
+                Console.WriteLine("___________________________________________________________");
+                Console.WriteLine("\nQue voulez-vous faire ?");
+                Console.WriteLine("\n[c]hiffrer");
+                Console.WriteLine("\n[d]échiffrer");
+                Console.WriteLine("\n[q]uitter le programme");
+                Console.WriteLine("___________________________________________________________");
+                cDebutProgramme = Console.ReadKey().KeyChar;
+
+                switch (cDebutProgramme)
+                {
+                    case 'c':
+                        chiffrer();
+                        break;
+                    case 'd':
+                        dechiffrer();
+                        break;
+                    case 'q':
+                        Environment.Exit(0);
+                        break;
+                }                
             }
         }
 
         static void chiffrer()
         {
+            string strMessage;
+            string strCle;
+            long lChiffreSol;
 
+            Console.Clear();
+            Console.WriteLine("___________________________________________________________");
+            Console.WriteLine("\nEntrez votre message à chiffrer : ");
+            Console.WriteLine("___________________________________________________________");
+            strMessage = Console.ReadLine();
+            while (strMessage.Length > 6)
+            {
+                Console.Clear();
+                Console.WriteLine("___________________________________________________________");
+                Console.WriteLine("\nVeuillez entrer un mot de moins de 7 caractères");
+                Console.WriteLine("___________________________________________________________");
+                strMessage = Console.ReadLine();
+            }
+            Console.Clear();
+            Console.WriteLine("___________________________________________________________");
+            Console.WriteLine("\nEntrez votre clé de cryptage : ");
+            Console.WriteLine("___________________________________________________________");
+            strCle = Console.ReadLine();
+            while (strCle.Length > 6)
+            {
+                Console.Clear();
+                Console.WriteLine("___________________________________________________________");
+                Console.WriteLine("\nVeuillez entrer un mot de moins de 7 caractères");
+                Console.WriteLine("___________________________________________________________");
+                strCle = Console.ReadLine();
+            }
+
+            long lMessageSol = ConvertionLC(strMessage);
+            long lCleSol = ConvertionCle(strCle);
+
+            lChiffreSol = lMessageSol + lCleSol;
+
+            Console.Clear();
+            Console.WriteLine("___________________________________________________________");
+            Console.WriteLine("\nVoici votre message codé :");
+            Console.WriteLine("\n{0}", lChiffreSol);
+            Console.WriteLine("___________________________________________________________");
+            Console.WriteLine("Pour revenir à la séléction, appuyez sur une touche");
+            Console.ReadKey();
+            start();
         }
+        
+
 
         static void dechiffrer()
         {
@@ -39,81 +128,102 @@ namespace Programme_chiffrage
             long lChiffreSol;
 
             Console.Clear();
+            Console.WriteLine("___________________________________________________________");
+            Console.WriteLine("\nEntrez votre série à déchiffrer : ");
+            Console.WriteLine("___________________________________________________________");
 
-            Console.WriteLine("Entrez votre série à déchiffrer : ");
             strSerie = Console.ReadLine();
             lSerie = Convert.ToInt64(strSerie);
-
-            Console.WriteLine("Entrez votre clé de décryptage : ");
-            strCle = Console.ReadLine();
-
-            long lCleSol = ConvertionCle(strCle);
-
-            lChiffreSol = lSerie + lCleSol;
-            strChiffreSol = Convert.ToString(lChiffreSol);
-
-        static void dechiffrer()
-        {
-            string strSerie;
-            string strCle;
-            string strChiffreSol;
-            long lSerie;
-            long lChiffreSol;
 
             Console.Clear();
+            Console.WriteLine("___________________________________________________________");
+            Console.WriteLine("\nEntrez votre clé de décryptage : ");
+            Console.WriteLine("___________________________________________________________");
 
-            Console.WriteLine("Entrez votre série à déchiffrer : ");
-            strSerie = Console.ReadLine();
-            lSerie = Convert.ToInt64(strSerie);
-
-            Console.WriteLine("Entrez votre clé de décryptage : ");
             strCle = Console.ReadLine();
+            while (strCle.Length > 6)
+            {
+                Console.Clear();
+                Console.WriteLine("___________________________________________________________");
+                Console.WriteLine("\nVeuillez entrer un mot de moins de 7 caractères");
+                Console.WriteLine("___________________________________________________________");
+                strCle = Console.ReadLine();
+            }
 
             long lCleSol = ConvertionCle(strCle);
 
-            lChiffreSol = lSerie + lCleSol;
+            lChiffreSol = lSerie - lCleSol;
             strChiffreSol = Convert.ToString(lChiffreSol);
 
             string strMessageSol = ConvertionCL(strChiffreSol);
 
-            Console.WriteLine("Voici votre message décodé : {0} ", strMessageSol);
+            Console.Clear();
+            Console.WriteLine("___________________________________________________________");
+            Console.WriteLine("\nVoici votre message décodé :");
+            Console.WriteLine("{0}", strMessageSol);
+            Console.WriteLine("___________________________________________________________");
+            Console.WriteLine("Pour revenir à la séléction, appuyez sur une touche");
             Console.ReadKey();
+            start();
 
         }
 
         static long ConvertionLC(string strMessage)
         {
+            int iPosChar = 0;
+            long lValeurNombre;
+            long lConvertionMessage;
+            string strValeurNombre;
+            string strConvertionMessage = "";
+            string strTempVal;
+            char cValeurNombre;
+
+            for (iPosChar = 0; iPosChar < strMessage.Length; iPosChar++)
+            {
+                strValeurNombre = strMessage.Substring(iPosChar, 1);                
+                   
+                cValeurNombre = Convert.ToChar(strValeurNombre);
+                lValeurNombre = Convert.ToInt64(cValeurNombre);
+                lValeurNombre = lValeurNombre + 3;
+                strTempVal = Convert.ToString(lValeurNombre);
+                strConvertionMessage = strConvertionMessage + strTempVal;
+                
+            }
+
+            lConvertionMessage = Convert.ToInt64(strConvertionMessage);
+
+            return lConvertionMessage;
+
 
         }
 
         static long ConvertionCle(string strCle)
         {
+            int iPosChar = 0;
+            long lValeurNombre;
+            long lConvertionCle;
+            string strValeurNombre;
+            string strConvertionMessage = "";
+            string strTempVal;
+            char cValeurNombre;
 
-        }
-
-        static string ConvertionCL(string strChiffreSol)
-        {
-            string strValeurLettre;
-            string strLettre;
-            string strMessageSol = "";
-            int iPosChar;
-            long lValeurLettre;
-            char cLettre;
-
-
-            if (strChiffreSol.Length % 3 == 2)
+            for (iPosChar = 0; iPosChar < strCle.Length; iPosChar++)
             {
                 strValeurNombre = strCle.Substring(iPosChar, 1);
+                                    
                 cValeurNombre = Convert.ToChar(strValeurNombre);
-                iValeurNombre = Convert.ToInt64(cValeurNombre);
-                strTempVal = Convert.ToString(iValeurNombre);
-                strConvertionMessage = strConvertionMessage + "0" + strTempVal;
+                lValeurNombre = Convert.ToInt64(cValeurNombre);
+                lValeurNombre = lValeurNombre + 3;
+                strTempVal = Convert.ToString(lValeurNombre);
+                strConvertionMessage = strConvertionMessage + strTempVal;
+                 
             }
 
-            // TODO: À supprimer
-            return 0;
-        }
+            lConvertionCle = Convert.ToInt64(strConvertionMessage);
 
+            return lConvertionCle;
+        }
+       
         static string ConvertionCL(string strChiffreSol)
         {
             string strValeurLettre;
@@ -122,39 +232,19 @@ namespace Programme_chiffrage
             int iPosChar;
             long lValeurLettre;
             char cLettre;
-
-
-            if (strChiffreSol.Length % 3 == 2)
+                         
+            iPosChar = 0;
+            for (int iRepetition = 0; iRepetition < strChiffreSol.Length / 3; iRepetition++)
             {
-                iPosChar = strChiffreSol.Length - 2;
-
-                int iSwitch = iPosChar;
-
-                for (int iRepetition = 0; iRepetition < strChiffreSol.Length / 3 - 1; iRepetition++)
-                {
-                    strValeurLettre = strChiffreSol.Substring(iPosChar, 3);
-                    lValeurLettre = Convert.ToInt64(strValeurLettre);
-                    cLettre = (char)lValeurLettre;
-                    strLettre = Convert.ToString(cLettre);
-                    strMessageSol = strLettre + strMessageSol;
-                    iPosChar = iPosChar - 3;
-                }
-
+                 strValeurLettre = strChiffreSol.Substring(iPosChar, 3);
+                 lValeurLettre = Convert.ToInt64(strValeurLettre);
+                 lValeurLettre = lValeurLettre - 3;
+                 cLettre = (char)lValeurLettre;
+                 strLettre = Convert.ToString(cLettre);
+                 strMessageSol = strMessageSol + strLettre;
+                 iPosChar = iPosChar + 3;
             }
-
-            else
-            {
-                iPosChar = 0;
-                for (int iRepetition = 0; iRepetition < strChiffreSol.Length / 3; iRepetition++)
-                {
-                    strValeurLettre = strChiffreSol.Substring(iPosChar, 3);
-                    lValeurLettre = Convert.ToInt64(strValeurLettre);
-                    cLettre = (char)lValeurLettre;
-                    strLettre = Convert.ToString(cLettre);
-                    strMessageSol = strLettre + strMessageSol;
-                    iPosChar = iPosChar - 3;
-                }
-            }
+            
 
             return strMessageSol;
         }
