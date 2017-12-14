@@ -4,6 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//  ____________________________________________
+// |  Auteur: Alexandre Maquet                  |
+// |  Date: 14.12.2017                          |
+// |  Classe: 1M4I1C                            |
+// |  Version du logiciel: Visual Studio 15.5.1 |
+// |  OS: Windows 10 Pro                        |
+// |  Language: C#                              |
+// |                                            |
+// |  But: Créer un programme de chiffrage      |
+// |____________________________________________|
+
 namespace Programme_chiffrage
 {
     class Program
